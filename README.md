@@ -16,6 +16,8 @@ This project automates the ML workflow using Jenkins, GitHub Actions, and Docker
    git clone https://github.com/tahahasan01/i211767_i211695.git
 
    # 🚀 MLOps CI/CD Pipeline for ML Model Deployment
+docker build -t mymlapp .
+docker run -p 5000:5000 mymlapp
 
 This project implements a **CI/CD pipeline** for a Machine Learning model using **GitHub Actions, Jenkins, Docker, and Flask**.  
 The pipeline ensures **automated testing, linting, and deployment** whenever new code is pushed.  
