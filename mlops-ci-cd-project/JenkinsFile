@@ -25,34 +25,22 @@ pipeline {
     }
 
     post {
-        success {
+        always {
+            script {
+                echo "🔔 Sending email notification..."
+            }
             emailext (
                 to: 'tahahasan279@gmail.com',
-                subject: "✅ Jenkins Deployment Successful: ${JOB_NAME} #${BUILD_NUMBER}",
+                subject: "✅ Jenkins Build: ${JOB_NAME} #${BUILD_NUMBER}",
                 body: """
-                🚀 **Jenkins successfully deployed your application!**
+                🚀 **Jenkins has completed the build!**
 
                 - **Job Name:** ${JOB_NAME}
                 - **Build Number:** ${BUILD_NUMBER}
-                - **View Build Logs:** ${BUILD_URL}
+                - **View Logs:** ${BUILD_URL}
                 - **Docker Image:** `tahahasan01/mymlapp:latest`
 
-                🎉 Your application is now live!
-                """
-            )
-        }
-        failure {
-            emailext (
-                to: 'tahahasan279@gmail.com',
-                subject: "❌ Jenkins Deployment Failed: ${JOB_NAME} #${BUILD_NUMBER}",
-                body: """
-                🔴 **Jenkins deployment has FAILED!**
-
-                - **Job Name:** ${JOB_NAME}
-                - **Build Number:** ${BUILD_NUMBER}
-                - **Check logs here:** ${BUILD_URL}
-
-                ❗ Please review the logs and fix the issue.
+                🎉 Check your email for details.
                 """
             )
         }
