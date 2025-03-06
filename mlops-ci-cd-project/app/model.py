@@ -26,4 +26,4 @@ y_pred = model.predict(X_test)
 print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
 
 # Save the model
-joblib.dump(model, "student_performance_model.pkl")
+joblib.dump(model, "model.py")
