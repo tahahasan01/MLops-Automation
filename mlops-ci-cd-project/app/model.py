@@ -3,9 +3,22 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import joblib
+import os
+
+# Debug: Print current working directory
+print("Current Working Directory:", os.getcwd())
+
+# Path to the CSV file (relative to the script's location)
+csv_path = os.path.join(os.path.dirname(__file__), "student_data.csv")
+
+# Debug: Check if the CSV file exists
+if not os.path.exists(csv_path):
+    print(f"Error: File '{csv_path}' not found.")
+else:
+    print(f"File '{csv_path}' found. Loading data...")
 
 # Load the dataset
-data = pd.read_csv("student_data.csv")
+data = pd.read_csv(csv_path)
 
 # Convert 'Pass' and 'Fail' to binary values
 data['result'] = data['result'].map({'Pass': 1, 'Fail': 0})
@@ -26,4 +39,15 @@ y_pred = model.predict(X_test)
 print(f"Accuracy: {accuracy_score(y_test, y_pred)}")
 
 # Save the model
-joblib.dump(model, "model.py")
+joblib.dump(model, "student_model.pkl")
+
+# Function to load the model and make predictions
+def predict(input_data):
+    # Load the model
+    model = joblib.load("student_model.pkl")
+    
+    # Make prediction
+    prediction = model.predict([input_data])
+    
+    # Return 'Pass' or 'Fail' based on the prediction
+    return 'Pass' if prediction[0] == 1 else 'Fail'
