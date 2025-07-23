@@ -30,7 +30,7 @@ The pipeline ensures **automated testing, linting, and deployment** whenever new
 
 ## 📂 Repository Structure
 
-i211767_i211695/        # Root directory (GitHub Repository)
+Mlops_Automation/        # Root directory (GitHub Repository)
 │
 ├── .github/            # GitHub Actions workflows
 │   ├── workflows/
